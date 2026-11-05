@@ -221,7 +221,7 @@ formulario, la validación, el SQL y la auditoría se generan automáticamente.
 
 - **Backend:** PHP 8.1+ (tipado estricto, propiedades `readonly`, `match`, tipo `never`), OCI8.
 - **Base de datos:** Oracle Database XE 21c / 23ai Free — tablas, restricciones, secuencias, vistas.
-- **Frontend:** Bootstrap 5.3 (solo rejilla y componentes), tipografías Alegreya y Alegreya Sans, JavaScript sin dependencias. El sistema visual «Libro de actas» está documentado en [`docs/diseno.md`](docs/diseno.md).
+- **Frontend:** Bootstrap 5.3 (solo rejilla y componentes), tipografías Alegreya y Alegreya Sans, JavaScript sin dependencias.
 - **Infraestructura:** Docker, Docker Compose, Apache 2.4, GitHub Actions (lint en PHP 8.1–8.4).
 
 ---
@@ -242,7 +242,7 @@ carpeta y lo muestra en el menú lateral y en la pantalla de inicio de sesión; 
 
 | Nombre | Carné | Rol |
 |---|---|---|
-| **Samuel Isaac Guzman Citalan** | 5090-24-756 | Análisis, diseño y desarrollo |
+| **Samuel Isaac Guzman Citalan** | 5090-24-756 | 
 
 Ingeniería en Sistemas · Universidad Mariano Gálvez de Guatemala, 2026.
 
