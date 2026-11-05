@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🎓 Sistema Académico UMG
+# Sistema Académico UMG
 
 **Portal web de gestión académica sobre Oracle Database**
 Proyecto universitario · Ingeniería en Sistemas · Universidad Mariano Gálvez de Guatemala
@@ -15,7 +15,7 @@ Proyecto universitario · Ingeniería en Sistemas · Universidad Mariano Gálvez
 
 ---
 
-## 📋 Descripción
+## Descripción
 
 Aplicación web desarrollada en **PHP 8 puro (sin frameworks)** que se conecta a una base de datos
 **Oracle** mediante la extensión **OCI8**. Permite **visualizar, crear, modificar y eliminar** la
@@ -27,26 +27,26 @@ El proyecto aplica una arquitectura en capas (Front Controller + MVC + Repositor
 prácticas de seguridad (OWASP) y aprovecha las características propias de Oracle: restricciones,
 secuencias, vistas, transacciones y bloqueo de filas.
 
-> ⚠️ Proyecto académico de demostración. No es un sistema oficial de la Universidad Mariano Gálvez de Guatemala.
+> Proyecto académico de demostración. No es un sistema oficial de la Universidad Mariano Gálvez de Guatemala.
 
 ---
 
-## ✨ Funcionalidades
+## Funcionalidades
 
 | Módulo | Descripción |
 |---|---|
-| 🔐 **Autenticación** | Login con `password_hash`/`password_verify` (bcrypt), bloqueo tras intentos fallidos, expiración de sesión por inactividad. |
-| 👥 **Roles** | `ADMIN` (lectura y escritura) y `CONSULTA` (solo lectura). Las rutas de escritura están protegidas en el servidor. |
-| 📊 **Panel principal** | Resumen del ciclo redactado como un acta, con cifras enlazadas, ocupación de secciones, alumnos por carrera, estado de inscripciones y promedios por curso dibujados como barras dentro de renglones. |
-| 🗂️ **CRUD genérico** | 10 catálogos con búsqueda, filtros, ordenamiento, paginación del lado del servidor y exportación a CSV. Construido a partir de metadatos (`config/entidades.php`). |
-| 🧾 **Ficha del alumno** | Historial académico, cursos aprobados, créditos acumulados y promedio. |
-| 📈 **Reportes** | Basados en las vistas `VW_ALUMNOS_CARRERA`, `VW_SECCIONES_DISPONIBLES` y `VW_HISTORIAL_ACADEMICO`, con filtros, impresión y CSV. |
-| 🛡️ **Usuarios** | Administración de cuentas: alta, edición, rol, activación, restablecimiento de contraseña y desbloqueo. |
-| 🕵️ **Bitácora** | Auditoría de inicios de sesión, intentos fallidos y cada `INSERT`/`UPDATE`/`DELETE` (con el detalle de los valores modificados). |
+| **Autenticación** | Login con `password_hash`/`password_verify` (bcrypt), bloqueo tras intentos fallidos, expiración de sesión por inactividad. |
+| **Roles** | `ADMIN` (lectura y escritura) y `CONSULTA` (solo lectura). Las rutas de escritura están protegidas en el servidor. |
+| **Panel principal** | Resumen del ciclo redactado como un acta, con cifras enlazadas, ocupación de secciones, alumnos por carrera, estado de inscripciones y promedios por curso dibujados como barras dentro de renglones. |
+| **CRUD genérico** | 10 catálogos con búsqueda, filtros, ordenamiento, paginación del lado del servidor y exportación a CSV. Construido a partir de metadatos (`config/entidades.php`). |
+| **Ficha del alumno** | Historial académico, cursos aprobados, créditos acumulados y promedio. |
+| **Reportes** | Basados en las vistas `VW_ALUMNOS_CARRERA`, `VW_SECCIONES_DISPONIBLES` y `VW_HISTORIAL_ACADEMICO`, con filtros, impresión y CSV. |
+| **Usuarios** | Administración de cuentas: alta, edición, rol, activación, restablecimiento de contraseña y desbloqueo. |
+| **Bitácora** | Auditoría de inicios de sesión, intentos fallidos y cada `INSERT`/`UPDATE`/`DELETE` (con el detalle de los valores modificados). |
 
 ---
 
-## 🏗️ Arquitectura
+## Arquitectura
 
 ```mermaid
 flowchart LR
@@ -101,7 +101,7 @@ erDiagram
 
 ---
 
-## 🔒 Seguridad implementada
+## Seguridad implementada
 
 - **Inyección SQL:** todas las consultas usan *bind variables* de OCI8; los nombres de tablas y columnas provienen de una lista blanca (`config/entidades.php`).
 - **Contraseñas:** hash **bcrypt** (`PASSWORD_DEFAULT`), re-hash automático, política de complejidad y tiempo de respuesta uniforme ante usuarios inexistentes.
@@ -117,15 +117,15 @@ erDiagram
 
 ---
 
-## 🚀 Instalación
+## Instalación
 
 ### Opción A — Docker (recomendada, todo incluido)
 
 Requisitos: [Docker Desktop](https://www.docker.com/products/docker-desktop/).
 
 ```bash
-git clone https://github.com/<tu-usuario>/umg-sistema-academico.git
-cd umg-sistema-academico
+git clone https://github.com/SilverSays/proyecto-db-umg.git
+cd proyecto-db-umg
 docker compose up -d --build
 ```
 
@@ -164,7 +164,7 @@ La primera vez Oracle tarda unos minutos en inicializarse (crea la base y ejecut
 
 ---
 
-## 🔑 Credenciales de demostración
+## Credenciales de demostración
 
 | Usuario | Contraseña | Rol | Permisos |
 |---|---|---|---|
@@ -182,7 +182,7 @@ php bin/crear_usuario.php --reset admin
 
 ---
 
-## ⚙️ Variables de entorno
+## Variables de entorno
 
 | Variable | Descripción | Valor por defecto |
 |---|---|---|
@@ -196,7 +196,7 @@ php bin/crear_usuario.php --reset admin
 
 ---
 
-## 🧩 Agregar un nuevo catálogo
+## Agregar un nuevo catálogo
 
 El CRUD es dirigido por metadatos. Para administrar una nueva tabla basta con declararla en
 `config/entidades.php` (columnas, tipos, validaciones, llaves foráneas y filtros); el listado, el
@@ -217,7 +217,7 @@ formulario, la validación, el SQL y la auditoría se generan automáticamente.
 
 ---
 
-## 🛠️ Tecnologías
+## Tecnologías
 
 - **Backend:** PHP 8.1+ (tipado estricto, propiedades `readonly`, `match`, tipo `never`), OCI8.
 - **Base de datos:** Oracle Database XE 21c / 23ai Free — tablas, restricciones, secuencias, vistas.
@@ -226,7 +226,7 @@ formulario, la validación, el SQL y la auditoría se generan automáticamente.
 
 ---
 
-## 🖼️ Logotipo institucional
+## Logotipo institucional
 
 El sello de la universidad se incluye en `public/assets/img/logo-umg.webp` (256 px, optimizado) y
 `favicon-umg.png`. El portal detecta automáticamente cualquier archivo `logo-umg.svg|png|webp|jpg` en esa
@@ -238,7 +238,7 @@ carpeta y lo muestra en el menú lateral y en la pantalla de inicio de sesión; 
 
 ---
 
-## 👤 Autor
+## Autor
 
 | Nombre | Carné | Rol |
 |---|---|---|
@@ -246,6 +246,6 @@ carpeta y lo muestra en el menú lateral y en la pantalla de inicio de sesión; 
 
 Ingeniería en Sistemas · Universidad Mariano Gálvez de Guatemala, 2026.
 
-## 📄 Licencia
+## Licencia
 
 Distribuido bajo la licencia MIT. Consulte [`LICENSE`](LICENSE).
