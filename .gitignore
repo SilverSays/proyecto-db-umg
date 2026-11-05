@@ -1,0 +1,19 @@
+# Configuración local con credenciales
+.env
+.env.*
+!.env.example
+
+# Dependencias / caché
+/vendor/
+/node_modules/
+*.cache
+
+# Logs
+*.log
+
+# IDE / sistema operativo
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db

@@ -1,0 +1,25 @@
+{
+    "name": "umg/sistema-academico",
+    "description": "Portal web de gestión académica sobre Oracle Database con PHP 8 y OCI8 (proyecto universitario).",
+    "type": "project",
+    "license": "MIT",
+    "require": {
+        "php": ">=8.1",
+        "ext-oci8": "*",
+        "ext-mbstring": "*",
+        "ext-json": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        },
+        "files": [
+            "app/Support/helpers.php",
+            "app/Support/view_helpers.php"
+        ]
+    },
+    "scripts": {
+        "serve": "php -S localhost:8000 -t public",
+        "lint": "find app config public bin views -name '*.php' -print0 | xargs -0 -n1 php -l"
+    }
+}

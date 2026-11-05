@@ -1,0 +1,55 @@
+# ---------------------------------------------------------------------------
+# Entorno completo de demostración:  docker compose up -d --build
+#   Portal web ........ http://localhost:8080
+#   Oracle 23ai Free .. localhost:1521/FREEPDB1
+# La primera ejecución tarda algunos minutos mientras Oracle crea la base de
+# datos y ejecuta los scripts de /database (solo ocurre una vez).
+# ---------------------------------------------------------------------------
+name: umg-sistema-academico
+
+services:
+  oracle:
+    image: gvenzl/oracle-free:23-slim
+    container_name: umg-oracle
+    environment:
+      ORACLE_PASSWORD: "${ORACLE_SYS_PASSWORD:-OracleSys_2026}"
+      TZ: America/Guatemala
+    ports:
+      - "1521:1521"
+    volumes:
+      - oracle-data:/opt/oracle/oradata
+      - ./database:/opt/umg/sql:ro
+      - ./docker/oracle:/container-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD", "healthcheck.sh"]
+      interval: 15s
+      timeout: 10s
+      retries: 40
+      start_period: 60s
+
+  app:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    container_name: umg-app
+    depends_on:
+      oracle:
+        condition: service_healthy
+    environment:
+      APP_ENV: demo
+      APP_DEBUG: "false"
+      APP_SHOW_DEMO_CREDENTIALS: "true"
+      DB_HOST: oracle
+      DB_PORT: "1521"
+      DB_SERVICE: FREEPDB1
+      DB_USERNAME: umg_academico
+      DB_PASSWORD: "Umg_Acad_2026#"
+      TZ: America/Guatemala
+    ports:
+      - "8080:80"
+    volumes:
+      # Montaje para desarrollo: los cambios en el código se reflejan sin reconstruir
+      - ./:/var/www/html
+
+volumes:
+  oracle-data:

@@ -1,0 +1,16 @@
+# Permite instalar el proyecto dentro de una subcarpeta de XAMPP/WAMP
+# (p. ej. C:\xampp\htdocs\umg-sistema-academico) sin exponer el código fuente:
+# todas las peticiones se reenvían a /public.
+# En producción se recomienda que el DocumentRoot apunte directamente a /public.
+
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^$ public/ [L]
+    RewriteRule ^((?!public/).*)$ public/$1 [L,NC]
+</IfModule>
+
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
